@@ -1,0 +1,47 @@
+[
+  {
+    "id": 1,
+    "customerName": "Panier en ligne",
+    "items": [
+      {
+        "id": 6,
+        "name": "Lamborghini Urus",
+        "price": 125000000,
+        "qty": 1
+      }
+    ],
+    "total": 125000000,
+    "status": "en panier",
+    "createdAt": "2026-03-29T21:02:16.602Z"
+  },
+  {
+    "id": 2,
+    "customerName": "Panier en ligne",
+    "items": [
+      {
+        "id": 16,
+        "name": "toyota",
+        "price": 15000000,
+        "qty": 1
+      }
+    ],
+    "total": 15000000,
+    "status": "en panier",
+    "createdAt": "2026-03-29T21:44:38.103Z"
+  },
+  {
+    "id": 3,
+    "customerName": "Panier en ligne",
+    "items": [
+      {
+        "id": 3,
+        "name": "Audi RS7 Sportback",
+        "price": 78000000,
+        "qty": 1
+      }
+    ],
+    "total": 78000000,
+    "status": "en panier",
+    "createdAt": "2026-03-29T22:01:17.958Z"
+  }
+]

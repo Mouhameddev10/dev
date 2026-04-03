@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Vente Voitures de Luxe</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #FFD700;
+            --dark: #0A0A0A;
+            --darker: #000000;
+            --light: #FFFFFF;
+            --gray: #B0B0B0;
+            --border: rgba(255, 255, 255, 0.1);
+            --card: rgba(255, 255, 255, 0.05);
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #0A0A0A, #000000);
+            color: var(--light);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header h1 {
+            color: var(--primary);
+            font-size: 2rem;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: var(--dark);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3);
+        }
+
+        .btn-secondary {
+            background: var(--card);
+            color: var(--light);
+            border: 1px solid var(--border);
+        }
+
+        .btn-danger {
+            background: #f44336;
+            color: white;
+        }
+
+        .btn-warning {
+            background: #ff9800;
+            color: white;
+        }
+
+        .login-form {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 15px;
+            padding: 40px;
+            max-width: 400px;
+            margin: 100px auto;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--light);
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px;
+            background: var(--darker);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            color: var(--light);
+            font-size: 16px;
+        }
+
+        .section {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+        }
+
+        .section h2 {
+            color: var(--primary);
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background: var(--darker);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: transform 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .card-content {
+            padding: 20px;
+        }
+
+        .card-title {
+            color: var(--primary);
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+
+        .card-price {
+            color: var(--light);
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+        }
+
+        .card-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 15px;
+            padding: 30px;
+            max-width: 600px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .modal-header h3 {
+            color: var(--primary);
+        }
+
+        .close {
+            background: none;
+            border: none;
+            color: var(--gray);
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 15px 20px;
+            border-radius: 8px;
+            color: white;
+            display: none;
+            z-index: 2000;
+        }
+
+        .notification.success {
+            background: #4CAF50;
+        }
+
+        .notification.error {
+            background: #f44336;
+        }
+
+        .notification.show {
+            display: block;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        @media (max-width: 768px) {
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+            
+            .grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Login Screen -->
+    <div id="login-screen">
+        <div class="login-form">
+            <h2 style="color: var(--primary); margin-bottom: 30px; text-align: center;">
+                <i class="fas fa-shield-alt"></i> Connexion Admin
+            </h2>
+            <form id="login-form">
+                <div class="form-group">
+                    <label>Nom d'utilisateur</label>
+                    <input type="text" id="username" value="admin" required>
+                </div>
+                <div class="form-group">
+                    <label>Mot de passe</label>
+                    <input type="password" id="password" value="admin123" required>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%;">
+                    <i class="fas fa-sign-in-alt"></i> Se connecter
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Admin Dashboard -->
+    <div id="admin-dashboard" class="hidden">
+        <div class="container">
+            <div class="header">
+                <h1><i class="fas fa-car-side"></i> Admin Panel</h1>
+                <div>
+                    <button class="btn btn-primary" onclick="openAddModal()">
+                        <i class="fas fa-plus"></i> Ajouter
+                    </button>
+                    <button class="btn btn-secondary" onclick="logout()">
+                        <i class="fas fa-sign-out-alt"></i> Déconnexion
+                    </button>
+                </div>
+            </div>
+
+            <!-- Cars Section -->
+            <div class="section">
+                <h2><i class="fas fa-car"></i> Voitures</h2>
+                <div id="cars-grid" class="grid">
+                    <!-- Cars will be loaded here -->
+                </div>
+            </div>
+
+            <!-- Carts Section -->
+            <div class="section">
+                <h2><i class="fas fa-shopping-cart"></i> Paniers Clients</h2>
+                <div id="carts-grid" class="grid">
+                    <!-- Carts will be loaded here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add/Edit Modal -->
+    <div id="car-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modal-title">Ajouter une Voiture</h3>
+                <button class="close" onclick="closeModal()">&times;</button>
+            </div>
+            <form id="car-form">
+                <input type="hidden" id="car-id">
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Nom</label>
+                        <input type="text" id="car-name" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Prix (FCFA)</label>
+                        <input type="number" id="car-price" required>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Catégorie</label>
+                        <select id="car-category" required>
+                            <option value="">Sélectionner</option>
+                            <option value="SUV">SUV</option>
+                            <option value="Sport">Sport</option>
+                            <option value="GT">GT</option>
+                            <option value="Électrique">Électrique</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Image</label>
+                        <input type="file" id="car-image" accept="image/*" onchange="previewImage(event)">
+                        <div id="image-preview" style="margin-top: 10px;"></div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Description</label>
+                    <textarea id="car-description" rows="4" required></textarea>
+                </div>
+
+                <div style="display: flex; gap: 10px;">
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-save"></i> Enregistrer
+                    </button>
+                    <button type="button" class="btn btn-secondary" onclick="closeModal()">
+                        <i class="fas fa-times"></i> Annuler
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div id="notification" class="notification"></div>
+
+    <script>
+        let cars = [];
+        let carts = [];
+        let editingCar = null;
+        let uploadedImage = null;
+
+        // Login
+        document.getElementById('login-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            
+            try {
+                const response = await fetch('/api/login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ username, password })
+                });
+                
+                const data = await response.json();
+                
+                if (data.success) {
+                    document.getElementById('login-screen').classList.add('hidden');
+                    document.getElementById('admin-dashboard').classList.remove('hidden');
+                    loadData();
+                } else {
+                    showNotification('Identifiants incorrects', 'error');
+                }
+            } catch (error) {
+                showNotification('Erreur de connexion au backend', 'error');
+            }
+        });
+
+        // Load data
+        async function loadData() {
+            await Promise.all([loadCars(), loadCarts()]);
+        }
+
+        // Load cars
+        async function loadCars() {
+            try {
+                const response = await fetch('/api/cars');
+                if (!response.ok) throw new Error('Erreur de chargement');
+                cars = await response.json();
+                displayCars();
+            } catch (error) {
+                showNotification('Erreur de chargement des voitures: ' + error.message, 'error');
+            }
+        }
+
+        // Load carts
+        async function loadCarts() {
+            try {
+                const response = await fetch('/api/carts', {
+                    headers: { 'Authorization': 'Bearer admin-token-secure' }
+                });
+                if (!response.ok) throw new Error('Erreur de chargement');
+                carts = await response.json();
+                displayCarts();
+            } catch (error) {
+                showNotification('Erreur de chargement des paniers: ' + error.message, 'error');
+            }
+        }
+
+        // Display cars
+        function displayCars() {
+            const grid = document.getElementById('cars-grid');
+            grid.innerHTML = cars.map(car => `
+                <div class="card">
+                    <img src="${car.image}" alt="${car.name}">
+                    <div class="card-content">
+                        <div class="card-title">${car.name}</div>
+                        <div class="card-price">${formatPrice(car.price)}</div>
+                        <div>${car.category}</div>
+                        <p style="color: var(--gray); font-size: 0.9rem; margin-top: 10px;">${car.description}</p>
+                        <div class="card-actions">
+                            <button class="btn btn-warning" onclick="editCar(${car.id})">
+                                <i class="fas fa-edit"></i> Modifier
+                            </button>
+                            <button class="btn btn-danger" onclick="deleteCar(${car.id})">
+                                <i class="fas fa-trash"></i> Supprimer
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Display carts
+        function displayCarts() {
+            const grid = document.getElementById('carts-grid');
+            if (carts.length === 0) {
+                grid.innerHTML = '<p style="color: var(--gray);">Aucun panier trouvé</p>';
+                return;
+            }
+            
+            grid.innerHTML = carts.map(cart => `
+                <div class="card">
+                    <div class="card-content">
+                        <div class="card-title">${cart.customerName}</div>
+                        <div class="card-price">${formatPrice(cart.total)}</div>
+                        <div>${cart.status === 'pending' ? 'En attente' : 'Traité'}</div>
+                        <p style="color: var(--gray); font-size: 0.9rem; margin-top: 10px;">
+                            Articles: ${cart.items.length}<br>
+                            Date: ${new Date(cart.createdAt).toLocaleDateString('fr-FR')}
+                        </p>
+                        <div class="card-actions">
+                            <button class="btn btn-warning" onclick="updateCartStatus(${cart.id})">
+                                <i class="fas fa-check"></i> Traité
+                            </button>
+                            <button class="btn btn-danger" onclick="deleteCart(${cart.id})">
+                                <i class="fas fa-trash"></i> Supprimer
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Open add modal
+        function openAddModal() {
+            editingCar = null;
+            uploadedImage = null;
+            document.getElementById('modal-title').textContent = 'Ajouter une Voiture';
+            document.getElementById('car-form').reset();
+            document.getElementById('image-preview').innerHTML = '';
+            document.getElementById('car-modal').classList.add('active');
+        }
+
+        // Edit car
+        function editCar(id) {
+            const car = cars.find(c => c.id === id);
+            if (!car) return;
+
+            editingCar = car;
+            document.getElementById('modal-title').textContent = 'Modifier la Voiture';
+            document.getElementById('car-id').value = car.id;
+            document.getElementById('car-name').value = car.name;
+            document.getElementById('car-price').value = car.price;
+            document.getElementById('car-category').value = car.category;
+            document.getElementById('car-description').value = car.description;
+            
+            if (car.image && !car.image.startsWith('data:')) {
+                document.getElementById('image-preview').innerHTML = `<img src="${car.image}" style="max-width: 100%; height: auto; border-radius: 8px;">`;
+            }
+            
+            document.getElementById('car-modal').classList.add('active');
+        }
+
+        // Delete car
+        async function deleteCar(id) {
+            if (!confirm('Supprimer cette voiture ?')) return;
+            
+            try {
+                const response = await fetch(`/api/cars/${id}`, {
+                    method: 'DELETE',
+                    headers: { 'Authorization': 'Bearer admin-token-secure' }
+                });
+                if (!response.ok) throw new Error('Erreur de suppression');
+                
+                cars = cars.filter(c => c.id !== id);
+                displayCars();
+                showNotification('Voiture supprimée', 'success');
+            } catch (error) {
+                showNotification('Erreur de suppression: ' + error.message, 'error');
+            }
+        }
+
+        // Update cart status
+        async function updateCartStatus(id) {
+            try {
+                const response = await fetch(`/api/carts/${id}`, {
+                    method: 'PUT',
+                    headers: { 
+                        'Content-Type': 'application/json',
+                        'Authorization': 'Bearer admin-token-secure'
+                    },
+                    body: JSON.stringify({ status: 'processed' })
+                });
+                if (!response.ok) throw new Error('Erreur de mise à jour');
+                
+                const cart = carts.find(c => c.id === id);
+                if (cart) cart.status = 'processed';
+                displayCarts();
+                showNotification('Panier marqué comme traité', 'success');
+            } catch (error) {
+                showNotification('Erreur de mise à jour: ' + error.message, 'error');
+            }
+        }
+
+        // Delete cart
+        async function deleteCart(id) {
+            if (!confirm('Supprimer ce panier ?')) return;
+            
+            try {
+                const response = await fetch(`/api/carts/${id}`, {
+                    method: 'DELETE',
+                    headers: { 'Authorization': 'Bearer admin-token-secure' }
+                });
+                if (!response.ok) throw new Error('Erreur de suppression');
+                
+                carts = carts.filter(c => c.id !== id);
+                displayCarts();
+                showNotification('Panier supprimé', 'success');
+            } catch (error) {
+                showNotification('Erreur de suppression: ' + error.message, 'error');
+            }
+        }
+
+        // Preview image
+        function previewImage(event) {
+            const file = event.target.files[0];
+            const preview = document.getElementById('image-preview');
+            
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    uploadedImage = e.target.result;
+                    preview.innerHTML = `<img src="${uploadedImage}" style="max-width: 100%; height: auto; border-radius: 8px;">`;
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+
+        // Close modal
+        function closeModal() {
+            document.getElementById('car-modal').classList.remove('active');
+        }
+
+        // Submit form
+        document.getElementById('car-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const carData = {
+                name: document.getElementById('car-name').value,
+                price: parseInt(document.getElementById('car-price').value),
+                category: document.getElementById('car-category').value,
+                description: document.getElementById('car-description').value,
+                image: uploadedImage || 'https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=800&q=80'
+            };
+
+            try {
+                let response;
+                if (editingCar) {
+                    response = await fetch(`/api/cars/${editingCar.id}`, {
+                        method: 'PUT',
+                        headers: { 
+                            'Content-Type': 'application/json',
+                            'Authorization': 'Bearer admin-token-secure'
+                        },
+                        body: JSON.stringify(carData)
+                    });
+                    if (!response.ok) throw new Error('Erreur de modification');
+                    const updated = await response.json();
+                    const index = cars.findIndex(c => c.id === editingCar.id);
+                    cars[index] = updated;
+                    showNotification('Voiture modifiée', 'success');
+                } else {
+                    response = await fetch('/api/cars', {
+                        method: 'POST',
+                        headers: { 
+                            'Content-Type': 'application/json',
+                            'Authorization': 'Bearer admin-token-secure'
+                        },
+                        body: JSON.stringify(carData)
+                    });
+                    if (!response.ok) throw new Error('Erreur d\'ajout');
+                    const added = await response.json();
+                    cars.push(added);
+                    showNotification('Voiture ajoutée', 'success');
+                }
+                
+                displayCars();
+                closeModal();
+            } catch (error) {
+                showNotification('Erreur lors de l\'opération: ' + error.message, 'error');
+            }
+        });
+
+        // Logout
+        function logout() {
+            document.getElementById('admin-dashboard').classList.add('hidden');
+            document.getElementById('login-screen').classList.remove('hidden');
+        }
+
+        // Notification
+        function showNotification(message, type) {
+            const notification = document.getElementById('notification');
+            notification.textContent = message;
+            notification.className = `notification ${type} show`;
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, 3000);
+        }
+
+        // Format price
+        function formatPrice(price) {
+            return new Intl.NumberFormat('fr-FR', {
+                style: 'currency',
+                currency: 'XOF',
+                minimumFractionDigits: 0
+            }).format(price);
+        }
+
+        // Close modal on outside click
+        document.getElementById('car-modal').addEventListener('click', (e) => {
+            if (e.target === e.currentTarget) {
+                closeModal();
+            }
+        });
+    </script>
+</body>
+</html>

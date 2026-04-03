@@ -1,0 +1,114 @@
+[
+  {
+    "id": 1,
+    "name": "Mercedes-Benz G63 AMG",
+    "price": 85000000,
+    "description": "SUV de luxe allemand avec moteur V8 biturbo 4.0L, 577 chevaux et intérieur cuir Nappa.",
+    "image": "https://images.unsplash.com/photo-1563729784470-2dff2c04f3ad?auto=format&fit=crop&w=800&q=80",
+    "category": "SUV"
+  },
+  {
+    "id": 2,
+    "name": "BMW M8 Competition",
+    "price": 92000000,
+    "description": "Coupé sportif allemand avec moteur V8 4.4L, 625 chevaux et traction intégrale M xDrive.",
+    "image": "https://images.unsplash.com/photo-1549924231-f129b911e442?auto=format&fit=crop&w=800&q=80",
+    "category": "Sport"
+  },
+  {
+    "id": 3,
+    "name": "Audi RS7 Sportback",
+    "price": 78000000,
+    "description": "Berline fastback avec V8 4.0L TFSI, 600 chevaux et technologie quattro.",
+    "image": "https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=800&q=80",
+    "category": "Sport"
+  },
+  {
+    "id": 6,
+    "name": "Lamborghini Urus",
+    "price": 125000000,
+    "description": "SUV super sportif italien avec moteur V8 4.0L twin-turbo, 650 chevaux, design Lamborghini emblématique.",
+    "image": "https://images.unsplash.com/photo-1493230019348-7f4cbf2d2c18?auto=format&fit=crop&w=800&q=80",
+    "category": "SUV"
+  },
+  {
+    "id": 7,
+    "name": "Ferrari Roma",
+    "price": 145000000,
+    "description": "Grand tourisme italien avec moteur V8 3.9L twin-turbo, 612 chevaux et design raffiné.",
+    "image": "https://images.unsplash.com/photo-1603731407865-1dd66a713b5f?auto=format&fit=crop&w=800&q=80",
+    "category": "GT"
+  },
+  {
+    "id": 8,
+    "name": "Bentley Continental GT",
+    "price": 135000000,
+    "description": "Grand tourisme britannique avec moteur W12 6.0L twin-turbo, intérieur bois et cuir.",
+    "image": "https://images.unsplash.com/photo-1542362569-02f7957c5ef8?auto=format&fit=crop&w=800&q=80",
+    "category": "GT"
+  },
+  {
+    "id": 9,
+    "name": "Rolls-Royce Cullinan",
+    "price": 180000000,
+    "description": "SUV ultra-luxe avec moteur V12 6.75L twin-turbo, intérieur personnalisable et confort inégalé.",
+    "image": "https://images.unsplash.com/photo-1511397909094-9a6e9b4fba10?auto=format&fit=crop&w=800&q=80",
+    "category": "SUV"
+  },
+  {
+    "id": 10,
+    "name": "Aston Martin DB11",
+    "price": 98000000,
+    "description": "Grand tourisme britannique avec moteur V12 5.2L twin-turbo, design élégant et héritage racing.",
+    "image": "https://images.unsplash.com/photo-1541584714738-9b6feb3af7fd?auto=format&fit=crop&w=800&q=80",
+    "category": "GT"
+  },
+  {
+    "id": 11,
+    "name": "McLaren 720S",
+    "price": 105000000,
+    "description": "Supercar britannique avec moteur V8 4.0L twin-turbo, 720 chevaux et châssis carbone.",
+    "image": "https://images.unsplash.com/photo-1521378442592-0a3c2bff48db?auto=format&fit=crop&w=800&q=80",
+    "category": "Sport"
+  },
+  {
+    "id": 12,
+    "name": "Maserati Levante Trofeo",
+    "price": 88000000,
+    "description": "SUV sportif italien avec moteur V8 3.8L twin-turbo de Ferrari, 580 chevaux.",
+    "image": "https://images.unsplash.com/photo-1560114927-5a3aea9bce7e?auto=format&fit=crop&w=800&q=80",
+    "category": "SUV"
+  },
+  {
+    "id": 13,
+    "name": "Jaguar F-Type R",
+    "price": 75000000,
+    "description": "Sportive britannique avec moteur V8 supercharged 5.0L, 575 chevaux et sonorité exceptionnelle.",
+    "image": "https://images.unsplash.com/photo-1578956925898-131f66e1271c?auto=format&fit=crop&w=800&q=80",
+    "category": "Sport"
+  },
+  {
+    "id": 14,
+    "name": "Tesla Model S Plaid",
+    "price": 68000000,
+    "description": "Berline électrique ultra-performante, 1020 ch, autonomie 637 km, 0-100km/h en 2.1 s.",
+    "image": "https://images.unsplash.com/photo-1601924752212-3f19f846447f?auto=format&fit=crop&w=800&q=80",
+    "category": "Électrique"
+  },
+  {
+    "id": 15,
+    "name": "Porsche Taycan Turbo S",
+    "price": 92000000,
+    "description": "Sportive électrique 761 ch, transmission intégrale, technologie Porsche E-Performance.",
+    "image": "https://images.unsplash.com/photo-1558980664-10b3a2f5ce7e?auto=format&fit=crop&w=800&q=80",
+    "category": "Électrique"
+  },
+  {
+    "id": 16,
+    "name": "toyota",
+    "price": 15000000,
+    "category": "SUV",
+    "description": "luxe",
+    "image": "/images/1774819156024-haut11.jpg"
+  }
+]

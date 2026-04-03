@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - LUXE AUTO</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-car-side"></i>
+                <span>LUXE AUTO - Admin</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Retour au site</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="admin-page">
+        <section class="admin-auth" id="adminAuthSection">
+            <div class="container">
+                <h1>Connexion Admin</h1>
+                <form id="adminLoginForm" class="admin-form">
+                    <div class="form-group">
+                        <label for="admin-username">Nom d'utilisateur</label>
+                        <input type="text" id="admin-username" placeholder="admin" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="admin-password">Mot de passe</label>
+                        <input type="password" id="admin-password" placeholder="admin123" required>
+                    </div>
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary">Se connecter</button>
+                    </div>
+                </form>
+                <p id="adminLoginError" style="color: #ff6666; display:none;">Identifiants incorrects.</p>
+            </div>
+        </section>
+
+        <section class="admin-dashboard" id="adminDashboard" style="display:none; padding-top:7rem;">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Tableau de bord administrateur</h2>
+                    <p class="section-subtitle">Ajouter / supprimer voitures, galerie et commandes clients</p>
+                </div>
+
+                <div class="action-bar" style="display:flex; gap:1rem; flex-wrap:wrap; margin-bottom:1rem;">
+                    <button class="btn btn-secondary" id="logoutAdmin">Se déconnecter</button>
+                </div>
+
+                <div class="admin-section" style="background:rgba(255,255,255,0.05); padding:1rem; border:1px solid var(--border-color); border-radius:12px; margin-bottom:1.5rem;">
+                    <h3>Ajout de voiture / galerie</h3>
+                    <form id="adminAddCarForm" class="admin-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="car-name-admin">Nom</label>
+                                <input id="car-name-admin" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="car-price-admin">Prix</label>
+                                <input id="car-price-admin" type="number" required>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="car-category-admin">Catégorie</label>
+                                <select id="car-category-admin" required>
+                                    <option value="SUV">SUV</option>
+                                    <option value="Sport">Sport</option>
+                                    <option value="GT">GT</option>
+                                    <option value="Électrique">Électrique</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="car-image-admin">Image (fichier)</label>
+                                <input id="car-image-admin" type="file" accept="image/*">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Prévisualisation</label>
+                            <div id="car-image-preview" style="height: 140px; border: 1px solid var(--border-color); border-radius: 10px; overflow: hidden;"></div>
+                        </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="car-description-admin">Description</label>
+                            <textarea id="car-description-admin" rows="3" required></textarea>
+                        </div>
+                        <div class="form-actions">
+                            <button type="submit" class="btn btn-primary">Ajouter la voiture</button>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="admin-section" style="margin-bottom:1.5rem;">
+                    <h3>Liste des voitures</h3>
+                    <div class="admin-table-wrap">
+                        <table class="admin-table" id="adminCarTable">
+                            <thead>
+                                <tr><th>ID</th><th>Image</th><th>Nom</th><th>Categorie</th><th>Prix</th><th>Description</th><th>Actions</th></tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="admin-section" style="margin-bottom:1.5rem;">
+                    <h3>Commandes clients</h3>
+                    <div id="orderList" style="max-height:400px; overflow:auto;"></div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="admin.js"></script>
+</body>
+</html>

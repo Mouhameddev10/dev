@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test Panier</title>
+</head>
+<body>
+    <h1>Test Panier</h1>
+    <button onclick="testPanier()">Tester Panier</button>
+    <div id="result"></div>
+    
+    <script>
+        async function testPanier() {
+            const testData = {
+                items: [
+                    { id: 1, name: 'Test Voiture', price: 1000000, quantity: 1 }
+                ],
+                total: 1000000,
+                customerName: 'Test Client',
+                customerPhone: '22100000000',
+                customerEmail: 'test@example.com'
+            };
+            
+            console.log('Test envoi panier:', testData);
+            
+            try {
+                const response = await fetch('/api/carts', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(testData)
+                });
+                
+                console.log('Status:', response.status);
+                const result = await response.json();
+                console.log('Résultat:', result);
+                
+                document.getElementById('result').innerHTML = `
+                    <h3>Résultat:</h3>
+                    <p>Status: ${response.status}</p>
+                    <p>Résultat: ${JSON.stringify(result, null, 2)}</p>
+                `;
+            } catch (error) {
+                console.error('Erreur:', error);
+                document.getElementById('result').innerHTML = `
+                    <h3>Erreur:</h3>
+                    <p>${error.message}</p>
+                `;
+            }
+        }
+    </script>
+</body>
+</html>

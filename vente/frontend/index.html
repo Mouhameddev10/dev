@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vente Voitures de Luxe Sénégal</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Loader -->
+    <div class="loader" id="loader">
+        <div class="loader-car">
+            <i class="fas fa-car"></i>
+        </div>
+        <p>Chargement des voitures de luxe...</p>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-car-side"></i>
+                <span>LUXE AUTO</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#home" class="nav-link">Accueil</a></li>
+                <li><a href="#cars" class="nav-link">Voitures</a></li>
+                <li><a href="#gallery" class="nav-link">Galerie</a></li>
+                <li class="cart-icon">
+                    <a href="#cart" class="nav-link">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-count" id="cart-count">0</span>
+                    </a>
+                </li>
+                <li><a href="/admin" class="nav-link">Admin</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Admin Access Button -->
+    <a href="/admin" class="admin-float">
+        <i class="fas fa-cog"></i>
+    </a>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1 class="hero-title">
+                <span class="title-line">Trouvez la voiture</span>
+                <span class="title-line highlight">de vos rêves</span>
+                <span class="title-line">au Sénégal</span>
+            </h1>
+            <p class="hero-subtitle">Collection exclusive de véhicules de luxe et d'exception</p>
+            <div class="hero-buttons">
+                <a href="#cars" class="btn btn-primary">
+                    <span>Explorer la collection</span>
+                    <i class="fas fa-arrow-right"></i>
+                </a>
+                <a href="#contact" class="btn btn-secondary">
+                    <span>Nous contacter</span>
+                    <i class="fas fa-phone"></i>
+                </a>
+            </div>
+        </div>
+        <div class="hero-bg"></div>
+    </section>
+
+    <!-- Cars Section -->
+    <section id="cars" class="cars-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Collection Exclusiv<span class="highlight">e</span></h2>
+                <p class="section-subtitle">Découvrez notre sélection de véhicules d'exception</p>
+            </div>
+            
+            <!-- Filter -->
+            <div class="filter-container">
+                <button class="filter-btn active" data-filter="all">Toutes</button>
+                <button class="filter-btn" data-filter="SUV">SUV</button>
+                <button class="filter-btn" data-filter="Sport">Sport</button>
+                <button class="filter-btn" data-filter="GT">GT</button>
+                <button class="filter-btn" data-filter="Électrique">Électrique</button>
+            </div>
+
+            <div class="cars-grid" id="cars-grid">
+                <!-- Cars will be loaded here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="gallery-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Galeri<span class="highlight">e</span></h2>
+                <p class="section-subtitle">Explorez notre collection complète</p>
+            </div>
+            <div class="gallery-grid" id="gallery-grid">
+                <!-- Gallery items will be loaded here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Cart Section -->
+    <section id="cart" class="cart-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Panier d'Acha<span class="highlight">t</span></h2>
+                <p class="section-subtitle">Vos véhicules sélectionnés</p>
+            </div>
+            <div class="cart-container">
+                <div class="cart-items" id="cart-items">
+                    <!-- Cart items will be loaded here -->
+                </div>
+                <div class="cart-summary">
+                    <h3>Récapitulatif</h3>
+                    <div class="summary-item">
+                        <span>Total:</span>
+                        <span class="total-price" id="total-price">0 FCFA</span>
+                    </div>
+                    <button class="btn btn-primary" onclick="contactWhatsApp()">
+                        <i class="fab fa-whatsapp"></i>
+                        <span>Contacter par WhatsApp</span>
+                    </button>
+                    <button class="btn btn-secondary" onclick="clearCart()">
+                        <i class="fas fa-trash"></i>
+                        <span>Vider le panier</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Contactez-nou<span class="highlight">s</span></h2>
+                <p class="section-subtitle">Nous sommes à votre disposition</p>
+            </div>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <div>
+                            <h3>Téléphone</h3>
+                            <p>+221 33 123 45 67</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fab fa-whatsapp"></i>
+                        <div>
+                            <h3>WhatsApp</h3>
+                            <p>+221 77 123 45 67</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <h3>Email</h3>
+                            <p>contact@luxeauto.sn</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <h3>Adresse</h3>
+                            <p>Almadies, Dakar, Sénégal</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- WhatsApp Float Button -->
+    <a href="https://wa.me/221771234567?text=Bonjour, je suis intéressé par vos voitures de luxe" 
+       class="whatsapp-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>LUXE AUTO</h3>
+                    <p>Votre concessionnaire de voitures de luxe au Sénégal</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Liens Rapides</h4>
+                    <ul>
+                        <li><a href="#home">Accueil</a></li>
+                        <li><a href="#cars">Voitures</a></li>
+                        <li><a href="#gallery">Galerie</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Suivez-nous</h4>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="https://wa.me/221771234567"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 LUXE AUTO. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
